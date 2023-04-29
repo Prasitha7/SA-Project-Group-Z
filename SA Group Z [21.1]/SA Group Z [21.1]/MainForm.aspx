@@ -10,6 +10,8 @@
     <form id="form1" runat="server">
         <div>
         </div>
+        <asp:DropDownList ID="DropDownList1" runat="server" Height="36px" Width="129px">
+        </asp:DropDownList>
     </form>
 </body>
 </html>
