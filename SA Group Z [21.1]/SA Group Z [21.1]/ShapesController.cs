@@ -7,33 +7,61 @@ using System.Web.Http;
 
 namespace SA_Group_Z__21._1_
 {
-    public class ShapesController : ApiController
+    public class ShapeServiceController : ApiController
     {
-        // GET api/<controller>
-        public IEnumerable<string> Get()
+        private static readonly Dictionary<string, object> _supportedShapes = new Dictionary<string, object>
         {
-            return new string[] { "value1", "value2" };
+            { "circle", new { radius = 0, center = new { x = 0, y = 0 } } },
+            { "triangle", new { a = new { x = 0, y = 0 }, b = new { x = 0, y = 0 }, c = new { x = 0, y = 0 } } },
+            { "rectangle", new { width = 0, height = 0, topLeft = new { x = 0, y = 0 } } }
+        };
+
+        private static readonly string[] _supportedBrailleChars = { "a", "b", "c" };
+
+        [HttpGet]
+        [Route("api/ShapeService/SupportedShapes")]
+        public IEnumerable<string> GetSupportedShapes()
+        {
+            return _supportedShapes.Keys.ToList();
         }
 
-        // GET api/<controller>/5
-        public string Get(int id)
+        [HttpGet]
+        [Route("api/ShapeService/SupportedBrailleChars")]
+        public IEnumerable<string> GetSupportedBrailleChars()
         {
-            return "value";
+            return _supportedBrailleChars;
         }
 
-        // POST api/<controller>
-        public void Post([FromBody] string value)
+        [HttpGet]
+        [Route("api/ShapeService/ShapeParameters/{shape}")]
+        public IHttpActionResult GetShapeParameters(string shape)
         {
+            if (!_supportedShapes.ContainsKey(shape))
+            {
+                return NotFound();
+            }
+
+            return Ok(_supportedShapes[shape]);
         }
 
-        // PUT api/<controller>/5
-        public void Put(int id, [FromBody] string value)
+        [HttpGet]
+        [Route("api/ShapeService/BrailleParameters/{brailleText}")]
+        public IHttpActionResult GetBrailleParameters(string brailleText)
         {
+            var dotCount = brailleText.Length;
+            var liquidAmount = dotCount * 0.1; // 0.1 ml per dot
+
+            return Ok(new { DotCount = dotCount, LiquidAmount = liquidAmount });
         }
 
-        // DELETE api/<controller>/5
-        public void Delete(int id)
+        [HttpPost]
+        [Route("api/ShapeService/ShapeComputation")]
+        public IHttpActionResult ComputeShape([FromBody] object shape)
         {
+            // perform computation on the provided shape and return the result
+            // e.g. calculate the number of dots required for the Braille representation of the shape
+
+            return Ok();
         }
     }
 }
