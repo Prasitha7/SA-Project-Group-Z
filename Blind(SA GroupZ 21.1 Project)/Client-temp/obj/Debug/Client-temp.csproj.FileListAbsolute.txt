@@ -1,0 +1,8 @@
+F:\NSBM\Blind\Client-temp\bin\Debug\Client-temp.exe.config
+F:\NSBM\Blind\Client-temp\bin\Debug\Client-temp.exe
+F:\NSBM\Blind\Client-temp\bin\Debug\Client-temp.pdb
+F:\NSBM\Blind\Client-temp\obj\Debug\Client-temp.csproj.AssemblyReference.cache
+F:\NSBM\Blind\Client-temp\obj\Debug\Client-temp.csproj.SuggestedBindingRedirects.cache
+F:\NSBM\Blind\Client-temp\obj\Debug\Client-temp.csproj.CoreCompileInputs.cache
+F:\NSBM\Blind\Client-temp\obj\Debug\Client-temp.exe
+F:\NSBM\Blind\Client-temp\obj\Debug\Client-temp.pdb

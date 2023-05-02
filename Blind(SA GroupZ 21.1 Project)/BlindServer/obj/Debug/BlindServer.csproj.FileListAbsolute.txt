@@ -1,0 +1,8 @@
+F:\NSBM\Blind\BlindServer\bin\Debug\BlindServer.exe.config
+F:\NSBM\Blind\BlindServer\bin\Debug\BlindServer.exe
+F:\NSBM\Blind\BlindServer\bin\Debug\BlindServer.pdb
+F:\NSBM\Blind\BlindServer\obj\Debug\BlindServer.csproj.AssemblyReference.cache
+F:\NSBM\Blind\BlindServer\obj\Debug\BlindServer.csproj.SuggestedBindingRedirects.cache
+F:\NSBM\Blind\BlindServer\obj\Debug\BlindServer.csproj.CoreCompileInputs.cache
+F:\NSBM\Blind\BlindServer\obj\Debug\BlindServer.exe
+F:\NSBM\Blind\BlindServer\obj\Debug\BlindServer.pdb
