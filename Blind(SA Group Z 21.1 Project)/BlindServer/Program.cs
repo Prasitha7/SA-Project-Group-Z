@@ -11,28 +11,36 @@ namespace BlindServer
     internal class Program
     {
         [ServiceContract]
-        public interface IBrailleService
-        {
-            [OperationContract]
-            string[] GetAvailableText();
+    public interface IBrailleService
+    {
+        [OperationContract]
+        string[] GetAvailableText();
 
-            [OperationContract]
-            void SendChapter(string message);
+        [OperationContract]
+        void SendChapter(string message);
 
-            [OperationContract]
-            int GetDots(string text);
+        [OperationContract]
+        int GetDots(string text);
 
-            [OperationContract]
-            double GetInk(int dots);
-        }
+        [OperationContract]
+        double GetInk(int dots);
+
+        [OperationContract]
+        string[] GetAvailableShapes();
+        [OperationContract]
+        int GetCircleDots(double r);
+        [OperationContract]
+        int GetRectangleDots(double w, double h);
+        [OperationContract]
+        int GetTriangleDots(double a1, double a2, double a3);
+    }
 
         [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
 
         public class BlindService : IBrailleService
         {
             //send to client
-            //..................
-            
+            //................................ 
             public string[] GetAvailableText()
             {
             BrailleService brailleService = new BrailleService();    
@@ -58,7 +66,47 @@ namespace BlindServer
                 return dots * inkPerDot;
             }
 
-            //.................
+            public string[] GetAvailableShapes()
+            {
+                ShapesService shapes = new ShapesService();
+
+                // Call the GetSupported method to retrieve a list of supported shapes
+                return shapes.GetSupported();
+
+            }
+
+            public int GetCircleDots(double r)
+            {
+                double rad = r;
+
+                Circle circle = new Circle();
+
+                // Call the GetSupported method to retrieve a list of supported characters
+                return circle.ComputePerimeter(rad);
+            }
+
+            public int GetRectangleDots(double w, double h)
+            {
+                double wid = w;
+                double heig = h;
+
+                Rectangle rect = new Rectangle();
+
+                return rect.ComputePerimeter(wid, heig);
+            }
+
+            public int GetTriangleDots(double a1, double a2, double a3)
+            {
+                double arm1 = a1;
+                double arm2 = a2;
+                double arm3 = a3;
+
+                Triangle triangle = new Triangle(); 
+
+                return triangle.ComputePerimeter(arm1, arm2, arm3);
+            }
+            //...........................
+
 
             //Get from client
             private List<string> Text = new List<string>();
@@ -67,6 +115,8 @@ namespace BlindServer
             {
                 Text.Add(message);
             }
+
+           
         }
 
 
@@ -96,8 +146,6 @@ namespace BlindServer
             
             //stop console from closing
             Console.ReadLine();
-
-
 
         }
 
